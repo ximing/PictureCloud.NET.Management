@@ -1,0 +1,179 @@
+﻿@model OurEDA.DianShangYun.Management.Areas.Admin.Models.Buckt.BucketManagementModel
+@using OurEDA.DianShangYun.Management.Comment
+@{
+    Layout = "~/Areas/Admin/Views/Shared/Bucket/_ContentLayout.cshtml";
+}
+@section styles{
+    <link rel="stylesheet" type="text/css" href="~/Scripts/webuploader/webuploader.css">
+    <script src="~/assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="~/Scripts/webuploader/webuploader.js"></script>
+    <script type="text/javascript">
+    $(function () {
+        var $ = jQuery,
+        $list = $('#fileList'),
+        uploader;
+
+        uploader = WebUploader.create({
+            // 自动上传。
+            auto: true,
+            // 不压缩image
+            resize: false,
+
+            // swf文件路径
+            swf: '/Scripts/webuploader/Uploader.swf',
+
+            // 文件接收服务端。
+            server: '/Home/UploadBucketImage',
+
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: '#filePicker',
+            threads: 1,
+            formData: {
+                ACCESS_KEY: "@Model.Bucket.ID",
+                    SECRET_KEY: "@Model.Bucket.SECRET_KEY",
+                }
+            });
+
+            // 当有文件添加进来的时候
+            uploader.on('fileQueued', function (file) {
+                $list.append('<div id="' + file.id + '" class="item">' +
+                    '<h4 class="info">' + file.name + '</h4>' +
+                    '<p class="state">等待上传...</p>' +
+                '</div>');
+            });
+
+            // 文件上传过程中创建进度条实时显示。
+            uploader.on('uploadProgress', function (file, percentage) {
+                var $li = $('#' + file.id),
+                    $percent = $li.find('.progress .progress-bar');
+
+                // 避免重复创建
+                if (!$percent.length) {
+                    $percent = $('<div class="progress progress-striped active">' +
+                      '<div class="progress-bar" role="progressbar" style="width: 0%">' +
+                      '</div>' +
+                    '</div>').appendTo($li).find('.progress-bar');
+                }
+
+                $li.find('p.state').text('上传中');
+
+                $percent.css('width', percentage * 100 + '%');
+            });
+
+            uploader.on('uploadSuccess', function (file) {
+                $('span.' + file.id).html('已上传');
+                //$('#' + file.id).children('.left_item').find('span.state').html('已上传');
+            });
+
+            uploader.on('uploadError', function (file) {
+                $('span.' + file.id).html('上传出错');
+                //$('#' + file.id).children('.left_item').find('span.state').html('上传出错');
+            });
+
+            uploader.on('uploadComplete', function (file) {
+                $('#' + file.id).find('.progress').fadeOut();
+            });
+            //后端返回数据
+            uploader.on('uploadAccept', function (object, ret) {
+                //alert(ret._raw);
+                //$("#" + object.file.id + "url").attr("value", ret._raw);//val(ret._raw);
+                //location.reload();
+                console.log(ret._raw);
+            });
+        });
+    </script>
+}
+<div class="page-sidebar navbar-collapse collapse">
+    <ul class="page-sidebar-menu">
+        <li>
+            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+            <div class="sidebar-toggler hidden-sm hidden-xs"></div>
+            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+        </li>
+        <li class="start active">
+            <a href="~/Admin/Bucket/Management/@Model.Bucket.ID">
+                <i class="fa fa-cogs"></i>
+                <span class="title">内容管理</span>
+                <span class="selected "></span>
+            </a>
+        </li>
+        <li>
+            <a href="~/Admin/Bucket/Config/@Model.Bucket.ID">
+                <i class="fa fa-cogs"></i>
+                <span class="title">空间配置</span>
+                <span class="selected "></span>
+            </a>
+        </li>
+        <li>
+            <a href="~/Admin/Bucket/Index">
+                <i class="fa fa-cogs"></i>
+                <span class="title">返回</span>
+                <span class="selected "></span>
+            </a>
+        </li>
+    </ul>
+</div>
+<!-- END SIDEBAR -->
+<!-- BEGIN PAGE -->
+<div class="page-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet box green">
+                <div class="portlet-title">
+                    <div class="caption"><i class="fa fa-cogs"></i>@Model.Bucket.Name 文件列表</div>
+                    <div class="tools">
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-toolbar">
+                        <div class="btn-group">
+                            <div id="thelist" class="uploader-list"></div>
+                            <div class="btns">
+                                <div id="filePicker">选择文件<i class="fa fa-plus"></i></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    
+                                    <th>文件</th>
+                                    <th>类型</th>
+                                    <th>大小</th>
+                                    <th>时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Catalogues)
+                                {
+                                    <tr>
+                                        <td>@item.FileLocalName</td>
+                                        <td>@item.FilemimeType</td>
+                                        <td>@item.FileSize.Format_FileSize()</td>
+                                        <td>@item.LastUpdateTime.UnixTimeToDatetime().ToShortDateString()</td>
+                                        <td>
+                                            <a class="btn btn-xs green" href="@string.Format("http://download.oureda.net/{0}",item.FileServerName)" target="_blank">
+                                                预览
+                                            </a>
+                                            <a class="btn btn-xs yellow" href="#">
+                                                复制外链
+                                            </a>
+                                            
+                                            <a href="#" class="btn btn-xs red" onclick="delete('@item.ID')">
+                                                删除
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

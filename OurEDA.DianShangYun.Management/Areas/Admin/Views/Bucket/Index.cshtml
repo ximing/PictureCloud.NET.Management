@@ -1,0 +1,45 @@
+﻿@model List<OurEDA.DianShangYun.Management.Areas.Admin.Models.MongoDB.Bucket>
+@using OurEDA.DianShangYun.Management.Comment
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Bucket/_Layout.cshtml";
+}
+@section styles{
+    <link href="~/assets/css/pages/news.css" rel="stylesheet" type="text/css" />
+    }
+
+@foreach (var item in Model)
+{
+    <div class="col-md-4">
+        <div class="top-news">
+            <a href="#" class="btn red">
+                <span>@item.Name</span>
+                <em>
+                    <i class="fa fa-tags"></i>
+                    @item.CreateTime
+                </em>
+                <i class="fa fa-globe top-news-icon"></i>
+            </a>
+        </div>
+        <div class="news-blocks">
+            <h5>存储空间</h5>
+            <div class="news-block-tags">
+                <strong>@item.Size.Format_FileSize()</strong>
+            </div>
+            <h5>访问流量</h5>
+            <div class="news-block-tags">
+                <strong>0kb</strong>
+            </div>
+            <h5>请求次数</h5>
+            <div class="news-block-tags">
+                <strong>0次</strong>
+            </div>
+            <a href="~/Admin/Bucket/Management/@item.ID" class="news-block-btn">
+                管理
+                <i class="m-icon-swapright m-icon-black"></i>
+            </a>
+        </div>
+    </div>
+}
+
+

@@ -1,0 +1,50 @@
+﻿<div class="header-inner">
+    <!-- BEGIN LOGO -->
+    <a class="navbar-brand" href="index.html">
+        <span>朝夕云</span>
+    </a>
+    <!-- END LOGO -->
+    <!-- BEGIN HORIZANTAL MENU -->
+    <div class="hor-menu hidden-sm hidden-xs">
+        <ul class="nav navbar-nav">
+            <li class="active">
+                <a href="~/admin/User/Index">
+                    首页
+                    <span class="selected"></span>
+                </a>
+            </li>
+            <li>
+                <a href="~/admin/Apps/Index">
+                    应用中心
+                </a>
+                
+            </li>
+        </ul>
+    </div>
+    <!-- END HORIZANTAL MENU -->
+    <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+    <a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <img src="assets/img/menu-toggler.png" alt="" />
+    </a>
+    <!-- END RESPONSIVE MENU TOGGLER -->
+    <!-- BEGIN TOP NAVIGATION MENU -->
+
+    <ul class="nav navbar-nav pull-right">
+        <li class="dropdown user">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                <img alt="" src="@OurEDA.DEV.Web.Comment.MyUserContext.Current.MyUser.ImageUrl" style="height:32px;width:32px"/>
+                <span class="username">@OurEDA.DEV.Web.Comment.MyUserContext.Current.MyUser.Name</span>
+                <i class="fa fa-angle-down"></i>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="extra_profile.html"><i class="fa fa-user"></i> 主页</a></li>
+                <li><a href="extra_profile.html"><i class="fa fa-user"></i> 账号管理</a></li>
+                <li class="divider"></li>
+                <li><a href="javascript:;" id="trigger_fullscreen"><i class="fa fa-move"></i>全屏</a></li>
+                <li><a href="login.html"><i class="fa fa-key"></i> 注销</a></li>
+            </ul>
+        </li>
+        <!-- END USER LOGIN DROPDOWN -->
+    </ul>
+    <!-- END TOP NAVIGATION MENU -->
+</div>

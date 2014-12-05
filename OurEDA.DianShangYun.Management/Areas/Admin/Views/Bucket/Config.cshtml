@@ -1,0 +1,40 @@
+﻿@model OurEDA.DianShangYun.Management.Areas.Admin.Models.MongoDB.Bucket
+@{
+    Layout = "~/Areas/Admin/Views/Shared/Bucket/_ContentLayout.cshtml";
+}
+<div class="page-sidebar navbar-collapse collapse">
+    <ul class="page-sidebar-menu">
+        <li>
+            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+            <div class="sidebar-toggler hidden-sm hidden-xs"></div>
+            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+        </li>
+        <li class="start">
+            <a href="~/Admin/Bucket/Management/@Model.ID">
+                <i class="fa fa-cogs"></i>
+                <span class="title">内容管理</span>
+                <span class="selected "></span>
+            </a>
+        </li>
+        <li class="active">
+            <a href="~/Admin/Bucket/Config/@Model.ID">
+                <i class="fa fa-cogs"></i>
+                <span class="title">空间配置</span>
+                <span class="selected "></span>
+            </a>
+        </li>
+        <li>
+            <a href="~/Admin/Bucket/Index">
+                <i class="fa fa-cogs"></i>
+                <span class="title">返回</span>
+                <span class="selected "></span>
+            </a>
+        </li>
+    </ul>
+</div>
+<!-- END SIDEBAR -->
+<!-- BEGIN PAGE -->
+<div class="page-content">
+    暂时未启用
+</div>
+
