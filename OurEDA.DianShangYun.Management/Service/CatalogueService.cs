@@ -23,7 +23,7 @@ namespace OurEDA.DianShangYun.Management.Service
 
             var settings = new MongoClientSettings
             {
-                Server = new MongoServerAddress("mongo.oureda.net", 27017),
+                Server = new MongoServerAddress("172.6.33.57", 27017),
                 Credentials = new[] { credential }
             };
 
