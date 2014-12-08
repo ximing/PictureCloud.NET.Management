@@ -28,11 +28,11 @@
             </div>
             <h5>访问流量</h5>
             <div class="news-block-tags">
-                <strong>0kb</strong>
+                <strong>@item.DownloadCurSize.Format_FileSize()</strong>
             </div>
             <h5>请求次数</h5>
             <div class="news-block-tags">
-                <strong>0次</strong>
+                <strong>@item.DownloadCurCount 次</strong>
             </div>
             <a href="~/Admin/Bucket/Management/@item.ID" class="news-block-btn">
                 管理

@@ -43,7 +43,10 @@ namespace OurEDA.DianShangYun.Management.Areas.Admin.Controllers
                 Name = name,
                 SECRET_KEY = GetMD5(md5),
                 Size = 0,
-                UserId = this.MyUser.ID
+                UserId = this.MyUser.ID,
+                DownloadCurCount = 0,
+                DownloadCurSize = 0,
+                DownloadTotalSize = 10L * 1024 * 1024 * 1024
             };
             var res = bs.InsertBucket(bucket);
             if (res.Ok)

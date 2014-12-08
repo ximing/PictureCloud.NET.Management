@@ -48,13 +48,11 @@
       <HintPath>..\packages\EntityFramework.6.1.2-beta2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MongoDB.Bson, Version=1.9.2.235, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\MongoDB.Bson.dll</HintPath>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\MongoDB_BSon_AND_Driver.1.0.0\lib\MongoDB.Bson.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Driver, Version=1.9.2.235, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\MongoDB.Driver.dll</HintPath>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\packages\MongoDB_BSon_AND_Driver.1.0.0\lib\MongoDB.Driver.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -123,13 +121,11 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Yeanzhi.Framework.Utility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Yeanzhi.Framework.Utility.dll</HintPath>
+    <Reference Include="Yeanzhi.Framework.Utility">
+      <HintPath>..\packages\Yeanzhi.Framework.Utility.1.0.0.0\lib\net45\Yeanzhi.Framework.Utility.dll</HintPath>
     </Reference>
-    <Reference Include="Yeanzhi.System, Version=2.6.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Yeanzhi.System.dll</HintPath>
+    <Reference Include="Yeanzhi.System">
+      <HintPath>..\packages\Yeanzhi.System.2.6.0.2\lib\net45\Yeanzhi.System.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

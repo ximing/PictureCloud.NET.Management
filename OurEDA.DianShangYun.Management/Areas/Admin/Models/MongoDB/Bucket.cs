@@ -23,5 +23,8 @@ namespace OurEDA.DianShangYun.Management.Areas.Admin.Models.MongoDB
         public string SECRET_KEY { get; set; }
         public bool IsPublic { get; set; }
         public long Size { get; set; }
+        public long DownloadCurCount { get; set; }
+        public long DownloadCurSize { get; set; }
+        public long DownloadTotalSize { get; set; }
     }
 }
