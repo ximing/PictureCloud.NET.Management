@@ -63,13 +63,19 @@
                 </div>
             </div>
             <div class="form-actions">
-                <label class="checkbox">
+                @*<label class="checkbox">
                     <input type="checkbox" name="remember" value="1" /> 记住密码
-                </label>
+                </label>*@
                 <span style="color:red">@ViewBag.error</span>
                 <button type="submit" class="btn blue pull-right">
                     登录 <i class="m-icon-swapright m-icon-white"></i>
                 </button>
+                <div class="create-account">
+                    <p>
+                        还没有账号?&nbsp;
+                        <a href="~/Admin/Auth/Register" id="register-btn">点击这里创建</a>
+                    </p>
+                </div>
             </div>
         </form>
 
