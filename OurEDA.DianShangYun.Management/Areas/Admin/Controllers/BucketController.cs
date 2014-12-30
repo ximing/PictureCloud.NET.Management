@@ -117,5 +117,11 @@ namespace OurEDA.DianShangYun.Management.Areas.Admin.Controllers
             }
             return sTemp.ToLower();
         }
+
+
+        public ActionResult SetAccessKey()
+        {
+            return View();
+        }
     }
 }

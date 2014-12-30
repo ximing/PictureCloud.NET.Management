@@ -2369,6 +2369,9 @@
     <Content Include="Areas\Admin\Views\Bucket\Management.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\Bucket\_ContentLayout.cshtml" />
     <Content Include="Areas\Admin\Views\Bucket\Config.cshtml" />
+    <Content Include="Areas\Admin\Views\Apps\SetAccessKey.cshtml" />
+    <Content Include="Areas\Admin\Views\User\SetAccessKey.cshtml" />
+    <Content Include="Areas\Admin\Views\Bucket\SetAccessKey.cshtml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

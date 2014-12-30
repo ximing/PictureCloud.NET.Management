@@ -13,5 +13,10 @@ namespace OurEDA.DianShangYun.Management.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public ActionResult SetAccessKey()
+        {
+            return View();
+        }
     }
 }
