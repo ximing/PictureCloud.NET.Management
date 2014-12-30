@@ -13,7 +13,7 @@ namespace OurEDA.DianShangYun.Management.Areas.Admin.Models.MongoDB
         [BsonConstructor]
         public User()
         {
-            CreateTime = DateTime.Now.DatetimeToUnixTime(); //new DateTime(DateTime.Now.Ticks, DateTimeKind.Utc);
+            CreateTime = DateTime.Now.DatetimeToUnixTime();
         }
         [BsonId]
         public virtual ObjectId ID { get; set; }
