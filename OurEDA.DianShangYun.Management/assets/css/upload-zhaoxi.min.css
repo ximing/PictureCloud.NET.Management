@@ -1,0 +1,12 @@
+﻿/*上传文件框*/
+.upload-modal{width:500px;height:auto;position:fixed;z-index:100;bottom:0px;right:0px;background-color:#FFF;box-shadow: 0 0 20px -2px rgba(0,0,0,.5);display:block;}
+.upload-modal .title{background-color:#4291E8;height:40px;}
+.upload-modal .title span{width:300px;display:inline-block;line-height:40px;color:#FFF;font-size:16px;text-indent:2em;}
+.upload-modal .title i{float:right;line-height:40px;font-size:18px;color:#FFF;margin-right:20px;cursor:pointer;}
+.upload-modal .content{display:none;width:inherit;height:195px;overflow-y:auto;overflow-x:hidden;}
+.upload-modal .content .upload-item{width:100%;height:35px;line-height:35px;border-bottom:1px solid #ebebeb;font-size:12px;margin-bottom:0px;}
+.upload-modal .content .upload-item span.up-name{display:inline-block;width:50%;text-indent:2em;text-overflow:ellipsis;}
+.upload-modal .content .upload-item span.up-parent{display:inline-block;width:32%;text-indent:2em;text-overflow:ellipsis;}
+.upload-modal .content .upload-item span.up-state{display:inline-block;width:15%;text-overflow:ellipsis;text-align:center;}
+.upload-modal .content .upload-item span.success{color:#4EA64E;}
+.upload-modal .content .upload-item .progress{height:10px;margin-bottom:0px;}

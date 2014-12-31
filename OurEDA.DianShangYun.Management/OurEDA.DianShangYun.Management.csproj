@@ -224,6 +224,7 @@
     <Content Include="assets\css\themes\grey.css" />
     <Content Include="assets\css\themes\light.css" />
     <Content Include="assets\css\themes\purple.css" />
+    <Content Include="assets\css\upload-zhaoxi.min.css" />
     <Content Include="assets\fonts\font.css" />
     <Content Include="assets\img\ajax-loading.gif" />
     <Content Include="assets\img\ajax-modal-loading.gif" />
@@ -2372,6 +2373,7 @@
     <Content Include="Areas\Admin\Views\Apps\SetAccessKey.cshtml" />
     <Content Include="Areas\Admin\Views\User\SetAccessKey.cshtml" />
     <Content Include="Areas\Admin\Views\Bucket\SetAccessKey.cshtml" />
+    <Content Include="assets\css\upload-zhaoxi.min" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

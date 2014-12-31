@@ -102,14 +102,23 @@
     </div>
 </div>
 
-
+<link href="~/assets/css/upload-zhaoxi.min.css" rel="stylesheet" type="text/css" />
+<div class="upload-modal">
+    <div class="title">
+        <span>朝夕云 上传面板</span>
+        <i class="fa fa-times"  title="关闭面板" onclick="CloseBoard(this);"></i>
+        <i class="fa fa-square-o" title="最大化" onclick="ToggleBoard(this);"></i>
+    </div>
+    <div class="content" id="thefilelist">
+    </div>
+</div>
 
 @section scripts{
-
+     
     <script type="text/javascript">
         $(function () {
             var $ = jQuery,
-            $list = $('#fileList'),
+            $list = $('#thefilelist'),
             uploader;
 
             uploader = WebUploader.create({
@@ -136,16 +145,18 @@
 
             // 当有文件添加进来的时候
             uploader.on('fileQueued', function (file) {
-                $list.append('<div id="' + file.id + '" class="item">' +
-                    '<h4 class="info">' + file.name + '</h4>' +
-                    '<p class="state">等待上传...</p>' +
-                '</div>');
+                $list.show("fast");
+                $list.append(' <p class="upload-item" id="' + file.id + '">' +
+                  '<span class="up-name">' + file.name + '</span>' +
+                      '<span class="up-parent" id="progress' + file.id + '"></span>' +
+                      '<span class="up-state success" id="name' + file.id + '">等待上传...</span>' +
+              '</p>');
             });
 
             // 文件上传过程中创建进度条实时显示。
             uploader.on('uploadProgress', function (file, percentage) {
-                var $li = $('#' + file.id),
-                    $percent = $li.find('.progress .progress-bar');
+                var $li = $('#progress' + file.id),
+                $percent = $li.find('.progress .progress-bar');
 
                 // 避免重复创建
                 if (!$percent.length) {
@@ -155,18 +166,18 @@
                     '</div>').appendTo($li).find('.progress-bar');
                 }
 
-                $li.find('p.state').text('上传中');
-
+                //$li.children('.left_item').find('span.state').html('上传中');
+                $('#name' + file.id).html('上传中');
                 $percent.css('width', percentage * 100 + '%');
             });
 
             uploader.on('uploadSuccess', function (file) {
-                $('span.' + file.id).html('已上传');
+                $('#name' + file.id).html('已上传');
                 //$('#' + file.id).children('.left_item').find('span.state').html('已上传');
             });
 
             uploader.on('uploadError', function (file) {
-                $('span.' + file.id).html('上传出错');
+                $('#name' + file.id).html('上传出错');
                 //$('#' + file.id).children('.left_item').find('span.state').html('上传出错');
             });
 
@@ -182,4 +193,20 @@
             });
         });
     </script>
+<script type="text/javascript">
+    function ToggleBoard(obj) {
+        if ($('.upload-modal .content').css("display") == "none") {
+            $(obj).removeClass("fa-square-o").addClass("fa-minus");
+            $('.upload-modal .content').show("fast");
+        }
+        else {
+            $(obj).removeClass("fa-minus").addClass("fa-square-o");
+            $('.upload-modal .content').hide("slow");
+        }
+    }
+    function CloseBoard(obj) {
+        $('.upload-modal .content').html("");
+        $('.upload-modal').hide();
+    }
+</script>
 }
