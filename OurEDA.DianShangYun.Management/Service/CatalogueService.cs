@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using MongoDB.Driver.Linq;
+using MongoDB.Driver.Builders;
 
 namespace OurEDA.DianShangYun.Management.Service
 {
@@ -44,6 +45,25 @@ namespace OurEDA.DianShangYun.Management.Service
             //}
             var v = catalogueCollection.AsQueryable<Catalogue>().Where(a=>a.BucketId==id).ToList();
             return v;
+        }
+
+        public Catalogue GetCatalogueByPath(string path)
+        {
+            var v = catalogueCollection.AsQueryable<Catalogue>().FirstOrDefault(a => a.FileServerName == path);
+            return v;
+        }
+
+        public void Delete(string catid)
+        {
+            ObjectId id = ObjectId.Empty;
+            ObjectId.TryParse(catid, out id);
+            if (id == ObjectId.Empty)
+            {
+                return;
+            }
+            var query = Query<Catalogue>.EQ(e => e.ID, id);
+            collection.Remove(query);
+            
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using OurEDA.DEV.Web.Comment;
+﻿using Newtonsoft.Json;
+using OurEDA.DEV.Web.Comment;
 using OurEDA.DianShangYun.Management.Areas.Admin.Models.Buckt;
 using OurEDA.DianShangYun.Management.Areas.Admin.Models.MongoDB;
 using OurEDA.DianShangYun.Management.Comment;
@@ -118,10 +119,15 @@ namespace OurEDA.DianShangYun.Management.Areas.Admin.Controllers
             return sTemp.ToLower();
         }
 
-
         public ActionResult SetAccessKey()
         {
             return View();
+        }
+
+        public String Delete(string id)
+        {
+            cs.Delete(id);
+            return JsonConvert.SerializeObject(new {state="200" });
         }
     }
 }

@@ -71,7 +71,7 @@
                                     <th>操作</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="filelist">
                                 @foreach (var item in Model.Catalogues)
                                 {
                                     <tr>
@@ -87,7 +87,7 @@
                                                 复制外链
                                             </a>
 
-                                            <a href="#" class="btn btn-xs red" onclick="delete('@item.ID')">
+                                            <a href="#" class="btn btn-xs red" onclick="deleteimg('@item.ID')">
                                                 删除
                                             </a>
                                         </td>
@@ -116,30 +116,30 @@
 @section scripts{
      
     <script type="text/javascript">
-        $(function () {
-            var $ = jQuery,
-            $list = $('#thefilelist'),
-            uploader;
+    $(function () {
+        var $ = jQuery,
+        $list = $('#thefilelist'),
+        uploader;
 
-            uploader = WebUploader.create({
-                // 自动上传。
-                auto: true,
-                // 不压缩image
-                resize: false,
+        uploader = WebUploader.create({
+            // 自动上传。
+            auto: true,
+            // 不压缩image
+            resize: false,
 
-                // swf文件路径
-                swf: '/Scripts/webuploader/Uploader.swf',
+            // swf文件路径
+            swf: '/Scripts/webuploader/Uploader.swf',
 
-                // 文件接收服务端。
-                server: '/Home/UploadBucketImage',
+            // 文件接收服务端。
+            server: '/Home/UploadBucketImage',
 
-                // 选择文件的按钮。可选。
-                // 内部根据当前运行是创建，可能是input元素，也可能是flash.
-                pick: '#filePicker',
-                threads: 1,
-                formData: {
-                    ACCESS_KEY: "@Model.Bucket.ID",
-                    SECRET_KEY: "@Model.Bucket.SECRET_KEY",
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: '#filePicker',
+            threads: 1,
+            formData: {
+                ACCESS_KEY: "@Model.Bucket.ID",
+                SECRET_KEY: "@Model.Bucket.SECRET_KEY",
                 }
             });
 
@@ -147,7 +147,7 @@
             uploader.on('fileQueued', function (file) {
                 $list.show("fast");
                 $list.append(' <p class="upload-item" id="' + file.id + '">' +
-                  '<span class="up-name">' + file.name + '</span>' +
+                  '<span class="up-name">' + file.name.substr(15) + '</span>' +
                       '<span class="up-parent" id="progress' + file.id + '"></span>' +
                       '<span class="up-state success" id="name' + file.id + '">等待上传...</span>' +
               '</p>');
@@ -174,6 +174,7 @@
             uploader.on('uploadSuccess', function (file) {
                 $('#name' + file.id).html('已上传');
                 //$('#' + file.id).children('.left_item').find('span.state').html('已上传');
+
             });
 
             uploader.on('uploadError', function (file) {
@@ -189,9 +190,38 @@
                 //alert(ret._raw);
                 //$("#" + object.file.id + "url").attr("value", ret._raw);//val(ret._raw);
                 //location.reload();
-                console.log(ret._raw);
+                //console.log(ret._raw);
+                var res = $.parseJSON(ret._raw);
+                if (res.state==200) {
+                    $("#filelist").append(' <tr>\
+                                        <td>'+ res.message.FileLocalName + '</td>\
+                                        <td>'+ res.message.FilemimeType + '</td>\
+                                        <td>'+ res.message.size + '</td>\
+                                        <td>' + res.message.time + '</td>\
+                                        <td>\
+                                            <a class="btn btn-xs green" href="http://download.oureda.net/"'+ res.message.FileServerName + '" target="_blank">\
+                预览\
+            </a>\
+            <a class="btn btn-xs yellow" href="#">\
+                复制外链\
+            </a>\
+            <a href="#" class="btn btn-xs red" onclick="deleteimg(\'' + res.message.ID + '\')">\
+                删除\
+            </a>\
+        </td>\
+    </tr>');
+                } else {
+                    alert(res.message);
+                }
+                
             });
-        });
+    });
+
+        function deleteimg(id) {
+            $.post("~/Admin/Bucket/Delete", {id:id}, function (res) {
+                location.reload();
+            })
+        }
     </script>
 <script type="text/javascript">
     function ToggleBoard(obj) {

@@ -1,11 +1,14 @@
 ﻿using cn.OurEDA.DianShangYunApi.Upload;
 using Newtonsoft.Json;
+using OurEDA.DianShangYun.Management.Areas.Admin.Models.MongoDB;
 using OurEDA.DianShangYun.Management.Comment.Upload;
+using OurEDA.DianShangYun.Management.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using OurEDA.DianShangYun.Management.Comment;
 
 namespace OurEDA.DianShangYun.Management.Controllers
 {
@@ -48,7 +51,45 @@ namespace OurEDA.DianShangYun.Management.Controllers
             put.Params.Add("ContentType", clientFile.ContentType);
             put.Params.Add("ContentLength", clientFile.ContentLength.ToString());
             var v = ioClient.Put(localFileName, clientFile.InputStream, put);
+            var vres = JsonConvert.DeserializeObject<res>(v.Response);
+            if (vres.state=="200")
+            {
+                var cs = new CatalogueService();
+                var cal = cs.GetCatalogueByPath(vres.message);
+                var resvat = new resCat(cal);
+                resvat.time = cal.LastUpdateTime.UnixTimeToDatetime().ToShortDateString();
+                resvat.size = cal.FileSize.Format_FileSize();
+                return JsonConvert.SerializeObject(new resResponse { message = resvat, state = "200" });
+            }
             return v.Response;
+        }
+
+        public class res
+        {
+            public string message { get; set; }
+            public string state { get; set; }
+        }
+
+        public class resResponse
+        {
+            public resCat message { get; set; }
+            public string state { get; set; }
+        }
+
+        public class resCat : Catalogue
+        {
+            public resCat(Catalogue c)
+            {
+                BucketId = c.BucketId;
+                this.FileLocalName = c.FileLocalName;
+                this.FilemimeType = c.FilemimeType;
+                this.FileServerName = c.FileServerName;
+                this.FileSize = c.FileSize;
+                this.ID = c.ID;
+                this.LastUpdateTime = c.LastUpdateTime;
+            }
+            public string time { get; set; }
+            public string size { get; set; }
         }
     }
 }
