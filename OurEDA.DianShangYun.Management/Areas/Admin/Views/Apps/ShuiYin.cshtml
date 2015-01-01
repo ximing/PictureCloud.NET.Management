@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "ShuiYin";
+    Layout = "~/Areas/Admin/Views/Shared/App/_Layout.cshtml";
+}
+
+<h2>在线水印文档</h2>
+<p>图片URL后接参数即可完成水印工作如：</p>
+<p>http://download.oureda.net/group2/M00/00/00/rAYhN1SK0YuAK5bZAAPrJiifbR4072.png?position=x,y&optical=50&size=width,height&logo=[http://download.oureda.net/group2/M00/00/00/rAYhN1SK0YuAK5bZAAPrJiifbR4072.png]</p> 
+<p>参数position 为水印图片相对于左上角的起始点坐标</p>
+<p>参数optical 为水印图片透明度</p>
+<p>参数size 为水印图片的宽度及高度</p>
+<p>参数logo为水印图片的地址，仅限本图片云下的地址</p>
+<p>例如：</p>
+<p>position=70,50&optical=50&size=100,200&logo=[http://download.oureda.net/group2/M00/00/00/rAYhN1SK0YuAK5bZAAPrJiifbR4072.png]表示水印的起始位置为（70,50），水印透明度为50%，水印的宽度为100、高度为200，水印图片地址http://download.oureda.net/group2/M00/00/00/rAYhN1SK0YuAK5bZAAPrJiifbR4072.png
+</p>

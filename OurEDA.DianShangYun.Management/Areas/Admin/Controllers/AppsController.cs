@@ -19,5 +19,22 @@ namespace OurEDA.DianShangYun.Management.Areas.Admin.Controllers
         {
             return View();
         }
+        public ActionResult Yasuo()
+        {
+            return View();
+        }
+        public ActionResult Jiancai()
+        {
+            return View();
+        }
+        public ActionResult ShuiYin()
+        {
+            return View();
+        }
+        public ActionResult Gaoqing()
+        {
+            return View();
+        }
+        
     }
 }

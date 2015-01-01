@@ -2098,6 +2098,12 @@
     <Content Include="Images\533544e062780.png" />
     <Content Include="Images\533544ea2079e.png" />
     <Content Include="Images\dt1019_89.png" />
+    <Content Include="Images\pic-3D.png" />
+    <Content Include="Images\pic-caiqie.png" />
+    <Content Include="Images\pic-cunchu.png" />
+    <Content Include="Images\pic-zhanshi.png" />
+    <Content Include="Images\pic_shuiyin.png" />
+    <Content Include="Images\pic_yasuo.png" />
     <Content Include="Models\DB\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
@@ -2374,6 +2380,10 @@
     <Content Include="Areas\Admin\Views\User\SetAccessKey.cshtml" />
     <Content Include="Areas\Admin\Views\Bucket\SetAccessKey.cshtml" />
     <Content Include="assets\css\upload-zhaoxi.min" />
+    <Content Include="Areas\Admin\Views\Apps\Yasuo.cshtml" />
+    <Content Include="Areas\Admin\Views\Apps\Jiancai.cshtml" />
+    <Content Include="Areas\Admin\Views\Apps\ShuiYin.cshtml" />
+    <Content Include="Areas\Admin\Views\Apps\Gaoqing.cshtml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

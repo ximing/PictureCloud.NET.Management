@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Jiancai";
+    Layout = "~/Areas/Admin/Views/Shared/App/_Layout.cshtml";
+}
+
+<h2>在线裁剪文档</h2>
+<p>图片URL后接参数即可完成剪裁工作如：</p>
+<p>http://download.oureda.net/group2/M00/00/00/rAYhN1SK0YuAK5bZAAPrJiifbR4072.png?crop=x_start,y_start,x_offset,y_offset</p>
+<p>参数x_start, y_start为裁剪相对于左上角的起始点坐标</p>
+<p>参数x_offset为裁剪宽度（单位：像素）</p><p>参数y_offset为裁剪高度（单位：像素）</p>
+<p>例如：</p>
+<p>crop=50,100,200,300图片裁剪将从点（50,100）开始裁剪，裁剪的宽高分别为200 以及 300。</p>

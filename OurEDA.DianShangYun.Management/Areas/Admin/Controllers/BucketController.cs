@@ -24,6 +24,7 @@ namespace OurEDA.DianShangYun.Management.Areas.Admin.Controllers
             bs = new BucketService();
             cs = new CatalogueService();
         }
+
         public ActionResult Index()
         {
             var res = bs.GetBugects();
